@@ -1,0 +1,27 @@
+{
+  "name": "nodeapp",
+  "version": "0.0.1",
+  "description": "Express application using Jade and Stylus",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies":{
+	"express": "*",
+	"jade": "*",
+	"nib":"*",
+	"stylus":"*",
+	"mongodb":"*",
+	"monk":"*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/brad-techguy/nodeapp.git"
+  },
+  "author": "Brad Traversy",
+  "license": "GNU",
+  "bugs": {
+    "url": "https://github.com/brad-techguy/nodeapp/issues"
+  },
+  "homepage": "https://github.com/brad-techguy/nodeapp"
+}

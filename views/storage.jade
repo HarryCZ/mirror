@@ -1,0 +1,38 @@
+extends layout
+
+block scripts
+	script(type='text/javascript' src='/js/storage.js')
+block subnav
+	ul
+		li <a href="/storage_items">Storage item</a>
+
+block content
+	h1=title
+	table.usertable
+		thead
+			tr
+				th.
+					Title
+				th.
+					Amount
+		tbody
+			each storage_item, i in storage
+				tr
+					td.
+						#{storage_item.title}
+					td.
+						#{storage_item.amount}
+		thead
+			tr
+				th.
+					Title
+				th.
+					Amount
+		tbody
+			each item, i in itemList
+				tr
+					td.
+						aaa #{item.title}
+	p.
+		<br>
+		<a href="http://localhost:3000">Go Back</a>			

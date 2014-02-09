@@ -1,0 +1,34 @@
+doctype html
+html
+	head
+		title #{title} - Node.js Demo Site
+		link(rel='stylesheet',href='/css/styles.css')
+		script(type='text/javascript' src='/js/jquery.js')
+		block scripts
+	body
+		block scripts
+		header
+			.container
+				h1 Node.js Demo Site
+				.nav
+					ul
+						li <a href="/storage">Storage</a>
+				block subnav
+		.container
+				.main-content
+					block content
+				.sidebar
+					block sidebar
+						.block
+							h1 Registration Form
+							form.addUser(name="adduser",method="post",action="/adduser")
+								input(type="text", placeholder="First Name", name="first_name")
+								input(type="text", placeholder="Last Name", name="last_name")
+								input(type="text", placeholder="Username", name="username")
+								input(type="text", placeholder="Email", name="email")
+								input(type="text", placeholder="Password", name="password")
+								button#btnSubmit(type="submit") submit
+			footer
+				.container
+					p Copyright &copy; 2014
+			
