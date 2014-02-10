@@ -1,6 +1,9 @@
 extends layout
 
 block scripts
+	script.
+		items = "#{itemsList}";
+		storage = "#{storagejs}";
 	script(type='text/javascript' src='/js/storage.js')
 block subnav
 	ul
@@ -18,21 +21,11 @@ block content
 		tbody
 			each storage_item, i in storage
 				tr
-					td.
+					td.title
 						#{storage_item.title}
 					td.
 						#{storage_item.amount}
-		thead
-			tr
-				th.
-					Title
-				th.
-					Amount
-		tbody
-			each item, i in itemList
-				tr
-					td.
-						aaa #{item.title}
+			
 	p.
 		<br>
 		<a href="http://localhost:3000">Go Back</a>			
