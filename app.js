@@ -3,6 +3,8 @@ var express = require('express');
 var stylus = require('stylus');
 var nib = require('nib');
 var routes = require('./routes');
+var storagert = require('./routes/storage');
+var purchase = require('./routes/purchase');
 var user = require('./routes/user');
 var http = require('http');
 var path = require('path');
@@ -49,9 +51,21 @@ app.use(express.static(__dirname+'/public'));
 app.get('/',routes.index);
 app.get('/userlist',routes.userlist(db));
 app.post('/adduser',routes.adduser(db));
+//storage items
+app.get('/storage',storagert.storage(db));
+app.get('/storage_items',storagert.storageItems(db));
+app.post('/addstorageitem',storagert.addstorageitem(db));
+//units
+app.get('/units',storagert.units(db));
+app.post('/addunit',storagert.addunit(db));
+//purchase
+app.get('/purchase',purchase.purchase);
+app.post('/addpurchase', purchase.addpurchase(db));
+app.get('/addpurchaseitem', purchase.addpurchaseitem(db));
+app.post('/writedbpurchaseitem', purchase.writedbpurchaseitem(db));
+app.post('/confirmpurchase', purchase.confirmpurchase(db));
+app.get('/purchasedetails:id', purchase.purchasedetails(db));
 
-app.get('/storage',routes.storage(db));
-app.get('/storage_items',routes.storageItems(db));
 
 app.listen(portnumber);
 console.log('Server is now running on port '+portnumber);

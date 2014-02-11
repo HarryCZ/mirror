@@ -1,0 +1,10 @@
+extends layout
+
+block content
+	h1=title
+	form.addPurchase(name="addpurchase",method="post",action="/addpurchase")
+		input(type="text", placeholder="Description", name="description")
+		button#btnSubmit(type="submit") submit
+	p.
+		<br>
+		<a href="/storage">Go Back</a>

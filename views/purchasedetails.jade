@@ -1,0 +1,36 @@
+extends layout
+block scripts
+	script.
+		sitems = "#{sitems}";
+	script(type='text/javascript' src='/js/purchaseDetails.js')
+		
+block content
+	h1=title
+	table.itemstable
+		thead
+			tr
+				th.
+					Title
+				th.
+					Amount
+				th.
+					Price
+		tbody
+			each item, i in pitems
+				tr
+					td.item_title
+						#{item.storage_item}
+					td.
+						#{item.amount}
+					td.
+						#{item.price}
+			tr.summary
+				td.
+					Total amount
+				td.
+						
+				td.
+					#{total_amount}
+	p.
+		<br>
+		<a href="/storage">Go Back</a>

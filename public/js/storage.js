@@ -3,13 +3,24 @@ $(document).ready(function(){
 	itemsArr = eval("("+items+")");
 	storage = storage.replace(/&quot;/g,'"');
 	storageArr = eval("("+storage+")");
-	var i=0;
+	var i=0; 
+	var j=0;
 	var matched = 0;
-	while ((itemsArr[i])&&(matched==0)) {
-		if (storageArr[0].storage_item == itemsArr[i]._id) {
-			jQuery('.usertable .title').text(itemsArr[i].title);
-			matched = 1;
+	while (storageArr[j]){
+		while ((itemsArr[i])&&(matched==0)) {
+			if (storageArr[j].storage_item == itemsArr[i]._id) {
+				storageArr[j].storage_item = itemsArr[i].title;
+				matched = 1;
+			}
+			i++;
 		}
-		i++;
+		j++;
 	}
+	i=0;
+	jQuery('.usertable .title').each(function(){
+		jQuery(this).text(storageArr[i].storage_item);
+		i++;
+	});
+	//jQuery('.usertable .title')[j].text(itemsArr[i].title);
+				
 })
