@@ -89,32 +89,54 @@ exports.confirmpurchase = function(db){
 		
 		var purchaseitemscollection = db.get('purchaseitemscollection');
 		purchaseitemscollection.find({'purchase' : id},{},function(e,doc){
-			var i=0;
-			while (doc[i]){
-				totAmount += parseInt(doc[i].price); 
-				i++;
-			}
-			
-			//Set Collection
-			var collection = db.get('purchasecollection');
-			
-			//Submit to the DB
-			collection.update({"_id" : id},{
-				"total_amount":totAmount.toString(),
-				"description":desc
-			},function(err,docs){
-				if(err){
-					res.send('There was a problem');
-				} else {
-					res.location('purchasedetails'+id);
-					res.redirect('purchasedetails'+id);
+			var storagecollection = db.get('storagecollection');
+			storagecollection.find({},{},function(err,storage){
+				var i=0;
+				while (doc[i]){
+					totAmount += parseInt(doc[i].price);
+					var j=0;
+					var matched = 0;
+					while ((storage[j])&&(matched==0)) {
+						console.log('DEBUG LINE '+j+" Pitem: "+doc[i].storage_item+" Storage: "+storage[j].storage_item);
+						if (doc[i].storage_item==storage[j].storage_item) {
+							storage[j].amount = parseInt(storage[j].amount) + parseInt(doc[i].amount);
+							matched++;
+							storagecollection.update({"_id":storage[j]._id},{
+								"storage_item":storage[j].storage_item,
+								"amount":storage[j].amount
+							},function(error,d){
+								if(err){
+									res.send('There was a problem adding amount to storage');
+								} else {
+									res.location('purchasedetails'+id);
+									res.redirect('purchasedetails'+id);
+								}
+							});
+						}
+						j++;
+					}
+					i++;
 				}
+				
+				//Set Collection
+				var collection = db.get('purchasecollection');
+				
+				//Submit to the DB
+				collection.update({"_id" : id},{
+					"total_amount":totAmount.toString(),
+					"description":desc
+				},function(err,docs){
+					if(err){
+						res.send('There was a problem adding purhase');
+					} else {
+						res.location('purchasedetails'+id);
+						res.redirect('purchasedetails'+id);
+					}
+				});
+				
+			
 			});
 		});
-		
-		
-		
-		
 	};
 };
 
@@ -129,7 +151,8 @@ exports.purchasedetails = function(db){
 		purchasecollection.find({"_id":idObj},{},function(err,purchase){
 			purchaseitemscollection.find({"purchase":req.params.id},{},function(e,pitems){
 				storageitemscollection.find({},{},function(e,sitems){
-					res.render('purchasedetails',{
+				
+				res.render('purchasedetails',{
 						"pitems":pitems,
 						sitems:JSON.stringify(sitems),
 						title: purchase[0].description,

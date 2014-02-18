@@ -3,11 +3,12 @@ $(document).ready(function(){
 	itemsArr = eval("("+items+")");
 	storage = storage.replace(/&quot;/g,'"');
 	storageArr = eval("("+storage+")");
-	var i=0; 
 	var j=0;
-	var matched = 0;
 	while (storageArr[j]){
+		var i=0; 
+		var matched = 0;
 		while ((itemsArr[i])&&(matched==0)) {
+			alert(storageArr[j].storage_item+'/'+itemsArr[i]._id);
 			if (storageArr[j].storage_item == itemsArr[i]._id) {
 				storageArr[j].storage_item = itemsArr[i].title;
 				matched = 1;
