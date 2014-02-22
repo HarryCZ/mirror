@@ -11,13 +11,13 @@ block content
 		thead
 			tr
 				th.
-					Item
+					Položka
 				th.
-					Amount
+					Množství
 				th.
-					Price
+					Nákupní cena
 				th.
-					Purchase
+					Nákup
 		tbody
 			each item, i in items
 				tr
@@ -32,11 +32,11 @@ block content
 	.block
 		h2 Add item to purchase
 		form.addPurchItem(name="addpurchaseitem",method="post",action="/writedbpurchaseitem")
-			select(type="text", placeholder="Item", name="item", id="item")
+			select(type="text", placeholder="Položka", name="item", id="item")
 				each sitem, i in storageIt
 					option(value="#{sitem._id}") #{sitem.title}
-			input(type="text", placeholder="Amount", name="amount")
-			input(type="text", placeholder="Price", name="price")
+			input(type="text", placeholder="Množství", name="amount")
+			input(type="text", placeholder="Cena", name="price")
 			input(type="hidden", name="purchase" value="#{id}")
 			button#btnSubmit(type="submit") submit
 	.block
