@@ -1,0 +1,27 @@
+extends layout
+
+block scripts
+
+block subnav
+
+
+block content
+	h1=title
+	table.purchasetable
+		thead
+			tr
+				th.
+					Popis
+				th.
+					Cena
+		tbody
+			each purchase, i in purchases
+				tr
+					td.
+						#{purchase.description}
+					td.
+						#{purchase.total_amount}
+			
+	p.
+		<br>
+		<a href="/">Go Back</a>	

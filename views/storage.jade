@@ -5,21 +5,25 @@ block scripts
 		items = "#{itemsList}";
 		storage = "#{storagejs}";
 	script(type='text/javascript' src='/js/storage.js')
+	
 block subnav
 	.subnav
 		ul
-			li <a href="/storage_items">Storage item</a>
-			li <a href="/units">Units</a>
+			li <a href="/storage_items"><mtl>storage_items</mtl></a>
+			li <a href="/units"><mtl>units</mtl></a>
 
 block content
-	h1=title
+	h1
+		mtl=title
 	table.usertable
 		thead
 			tr
-				th.
-					Název
-				th.
-					Množství
+				th
+					mtl.
+						title
+				th
+					mtl.
+						amount
 		tbody
 			each storage_item, i in storage
 				tr
@@ -30,4 +34,4 @@ block content
 			
 	p.
 		<br>
-		<a href="http://localhost:3000">Go Back</a>			
+		<a href="/">Go Back</a>			

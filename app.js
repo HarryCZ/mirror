@@ -65,7 +65,7 @@ app.get('/addpurchaseitem', purchase.addpurchaseitem(db));
 app.post('/writedbpurchaseitem', purchase.writedbpurchaseitem(db));
 app.post('/confirmpurchase', purchase.confirmpurchase(db));
 app.get('/purchasedetails:id', purchase.purchasedetails(db));
-
+app.get('/purchaselist', purchase.purchaselist(db));
 
 app.listen(portnumber);
 console.log('Server is now running on port '+portnumber);

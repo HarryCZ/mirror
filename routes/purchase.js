@@ -1,6 +1,14 @@
 //Purchase
-exports.purchase = function(req,res){
-	res.render('purchase',{title: 'Add new purchase'});
+exports.purchase = function(db){
+	return function(req,res){
+		var collection = db.get('purchasecollection');
+		collection.find({},{},function(e,docs){
+			res.render('purchase',{
+				"purchases" : docs,
+				title : "Nákupy"
+			});
+		});
+	};
 };
 
 //Add Unit Form
@@ -84,6 +92,7 @@ exports.confirmpurchase = function(db){
 	return function(req,res){
 		//Get Input Submissions
 		var id = req.body.pid;
+		console.log('Id: '+id);
 		var desc = req.body.pdesc;
 		var totAmount=0;
 		
@@ -99,6 +108,7 @@ exports.confirmpurchase = function(db){
 					while ((storage[j])&&(matched==0)) {
 						console.log('DEBUG LINE '+j+" Pitem: "+doc[i].storage_item+" Storage: "+storage[j].storage_item);
 						if (doc[i].storage_item==storage[j].storage_item) {
+							console.log('Actual: '+parseInt(storage[j].amount)+' New: '+parseInt(doc[i].amount));
 							storage[j].amount = parseInt(storage[j].amount) + parseInt(doc[i].amount);
 							matched++;
 							storagecollection.update({"_id":storage[j]._id},{
@@ -107,10 +117,7 @@ exports.confirmpurchase = function(db){
 							},function(error,d){
 								if(err){
 									res.send('There was a problem adding amount to storage');
-								} else {
-									res.location('purchasedetails'+id);
-									res.redirect('purchasedetails'+id);
-								}
+								} 
 							});
 						}
 						j++;
@@ -129,6 +136,7 @@ exports.confirmpurchase = function(db){
 					if(err){
 						res.send('There was a problem adding purhase');
 					} else {
+						console.log('collage updated');
 						res.location('purchasedetails'+id);
 						res.redirect('purchasedetails'+id);
 					}
@@ -159,6 +167,19 @@ exports.purchasedetails = function(db){
 						total_amount: purchase[0].total_amount
 					});
 				});
+			});
+		});
+	};
+};
+
+//Purchase List
+exports.purchaselist = function(db){
+	return function(req,res){
+		var collection = db.get('purchasecollection');
+		collection.find({},{},function(e,docs){
+			res.render('purchaselist',{
+				"purchases" : docs,
+				title : "Nákupy"
 			});
 		});
 	};

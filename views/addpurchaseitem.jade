@@ -30,7 +30,7 @@ block content
 					td.
 						#{item.purchase}
 	.block
-		h2 Add item to purchase
+		h2 Přidat položku nákupu
 		form.addPurchItem(name="addpurchaseitem",method="post",action="/writedbpurchaseitem")
 			select(type="text", placeholder="Položka", name="item", id="item")
 				each sitem, i in storageIt
@@ -38,13 +38,13 @@ block content
 			input(type="text", placeholder="Množství", name="amount")
 			input(type="text", placeholder="Cena", name="price")
 			input(type="hidden", name="purchase" value="#{id}")
-			button#btnSubmit(type="submit") submit
+			button#btnSubmit(type="submit") Přidat
 	.block
-		h2 Confirm purchase
+		h2 Uložit nákup
 		form.confirmPurch(name="confirmpurchase",method="post",action="/confirmpurchase")
 			input(type="hidden", name="pid" value="#{id}")
 			input(type="hidden", name="pdesc" value="#{title}")
-			button#btnSubmit(type="submit") submit
+			button#btnSubmit(type="submit") Potvrdit
 	p.
 		<br>
 		<a href="/storage">Go Back</a>

@@ -4,7 +4,7 @@ html
 		title #{title} - Mirror-Mirror (pub economy system)
 		link(rel='stylesheet',href='/css/styles.css')
 		script(type='text/javascript' src='/js/jquery.js')
-		script(type='text/javascript' src='/js/mlt.js')
+		script(type='text/javascript' src='/js/multiLang.js')
 		block scripts
 	body
 		block scripts
@@ -13,8 +13,8 @@ html
 				h1 Mirror-Mirror
 				.nav
 					ul
-						li <a href="/storage">Sklad</a>
-						li <a href="/purchase">Nakupy</a>
+						li <a href="/storage"><mtl>storage</mtl></a>
+						li <a href="/purchase"><mtl>purchases</mtl></a>
 				block subnav
 		.container
 				.main-content
