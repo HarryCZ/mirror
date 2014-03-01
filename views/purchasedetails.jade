@@ -6,15 +6,19 @@ block scripts
 		
 block content
 	h1=title
+	p=treasury
 	table.itemstable
 		thead
 			tr
-				th.
-					Název
-				th.
-					Množství
-				th.
-					Cena
+				th
+					mtl.
+						item
+				th
+					mtl.
+						amount
+				th
+					mtl.
+						price
 		tbody
 			each item, i in pitems
 				tr
@@ -25,8 +29,9 @@ block content
 					td.
 						#{item.price}
 			tr.summary
-				td.
-					Celkové množství
+				td
+					mtl.
+						total_price
 				td.
 						
 				td.

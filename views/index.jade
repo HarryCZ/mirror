@@ -1,21 +1,12 @@
 extend layout
 block content
-  h1=title
-  p.
-   Welcome to the Node.js Demo Registration App. This demo app uses the following features/modules...
-  ul.featurelist
-    li.
-      Express Framework
-    li.
-      Jade Template Engine
-    li.
-      Stylus CSS Generator
-    li.
-      Nib
-    li.
-      MongoDB
-    li.
-      Monk
-  div.userlistlink
-    p.
-      To see all registered users, <a href="/userlist">click here</a>
+	h1.
+		Mirror-Mirror
+	p.
+		Welcome to the Mirror-Mirror
+	ul.loginform
+		form.login(name="login",method="post",action="/login")			
+			input(type="text", placeholder="username", name="user")
+			input(type="text", placeholder="password", name="password")
+			button#btnSubmit(type="submit") sign_in
+		

@@ -1,30 +1,13 @@
 extends layout
 
 block content
-	h1=title
-	table.purchasetable
-		thead
-			tr
-				th.
-					Popis
-				th.
-					Cena
-		tbody
-			each purchase, i in purchases
-				tr
-					td.
-						#{purchase.description}
-					td.
-						#{purchase.total_amount}
-			
-	p.
-		<br>
-		<a href="/">Go Back</a>	
-
-block sidebar
-	h1=title
 	form.addPurchase(name="addpurchase",method="post",action="/addpurchase")
-		input(type="text", placeholder="Popis", name="description")
+		input(type="text", placeholder="description", name="description")
+		input(type="text", placeholder="date", name="date")
+		input(type="text", placeholder="supplier", name="supplier")
+		select(type="text", placeholder="treasury", name="treasury", id="treasury")
+				each treasury, i in treasuries
+					option(value="#{treasury._id}") #{treasury.title}
 		button#btnSubmit(type="submit") submit
 	p.
 		<br>

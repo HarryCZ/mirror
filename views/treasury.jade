@@ -1,0 +1,35 @@
+extend layout
+
+block subnav
+	.subnav
+		ul
+			li <a href="/incomesSpending"><mtl>incomes_spending</mtl></a>
+block content
+	h1
+		mtl.
+			treasury
+	table.treasury
+		thead
+			tr
+				th
+					mtl.
+						title
+				th
+					mtl.
+						status
+		tbody
+			each treasury, i in treasuries
+				tr
+					td.
+						#{treasury.title}
+					td.
+						#{treasury.status}
+block sidebar
+	.block
+		h1 
+			mtl.
+				add_treasury
+		form.addTreasury(name="addTreasury",method="post",action="/addTreasury")
+			input(type="text", placeholder="title", name="title" id="title")
+			input(type="text", placeholder="status", name="status")
+			button#btnSubmit(type="submit") submit

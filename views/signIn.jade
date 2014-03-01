@@ -1,0 +1,10 @@
+extends layout
+		
+block content
+	h1
+		mtl.
+			sign_in
+	form.login(name="login",method="post",action="/login")			
+		input(type="text", placeholder="username", name="user")
+		input(type="text", placeholder="password", name="password")
+		button#btnSubmit(type="submit") sign_in

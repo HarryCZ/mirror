@@ -83,6 +83,61 @@ var mtl = [
         "title": "conversion",
         "cz": "Přepočet",
         "en": "Conversion"
+    },
+    {
+        "title": "description",
+        "cz": "Popis",
+        "en": "Description"
+    },
+    {
+        "title": "date",
+        "cz": "Datum",
+        "en": "Date"
+    },
+    {
+        "title": "supplier",
+        "cz": "Dodavatel",
+        "en": "Supplier"
+    },
+    {
+        "title": "total_price",
+        "cz": "Celková cena",
+        "en": "Total price"
+    },
+    {
+        "title": "item",
+        "cz": "Položka",
+        "en": "Item"
+    },
+    {
+        "title": "price",
+        "cz": "Nákupní cena",
+        "en": "Price"
+    },
+    {
+        "title": "purchase",
+        "cz": "Nákup",
+        "en": "Purchase"
+    },
+    {
+        "title": "add_purchase_item",
+        "cz": "Přidat položku nákupu",
+        "en": "Add purchase item"
+    },
+    {
+        "title": "add",
+        "cz": "Přidat",
+        "en": "Add"
+    },
+    {
+        "title": "confirm_purchase",
+        "cz": "Uložit nákup",
+        "en": "Save purchase"
+    },
+    {
+        "title": "add_unit",
+        "cz": "Přidat jednotku",
+        "en": "Add unit"
     }
 ];
 
