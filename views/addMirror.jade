@@ -1,0 +1,40 @@
+extends layout
+block scripts
+	script.
+		$(function() {
+			$( "#datepicker" ).datepicker();
+		});
+	
+block subnav
+	#subnavBtn
+		mtl.
+			mirrors
+	.subnav
+		ul
+			a(href="/mirror")
+				li
+					mtl.
+						mirrors
+			a(href="/debts")
+				li
+					mtl.
+						debts
+block content
+	h1 
+		mtl.
+			add_mirror
+	form.addMirror(name="addMirror",method="post",action="/addMirror")
+		input(type="text", placeholder="date", name="date", id="datepicker", required)
+		.formSelectTitle
+			mtl.
+				user
+		select(type="text", placeholder="user", name="user", id="user")
+			each user, i in users
+				option(value="#{user._id}") #{user.username}
+		.formSelectTitle
+			mtl.
+				treasury
+		select(type="text", placeholder="treasury", name="treasury", id="treasury")
+			each treasury, i in treasuries
+				option(value="#{treasury._id}") #{treasury.title}
+		button#btnSubmit(type="submit") submit

@@ -1,54 +1,46 @@
 extends layout
 
 block scripts
+	script(type='text/javascript' src='/js/purchaseList.js')
 
 block subnav
+	#subnavBtn
+		mtl.
+			purchases
+	.subnav
+		
+	#addBtn
+		a(href="/purchase")
+			img(src="/images/butAdd.png")
 
 
 block content
 	h1
-		mtl=title
+		mtl.
+			purchases
 	table.purchasetable
 		thead
 			tr
 				th
 					mtl.
 						description
-				th
+				th.odd
 					mtl.
 						date
 				th
 					mtl.
 						supplier
-				th
+				th.odd
 					mtl.
 						total_price
 		tbody
 			each purchase, i in purchases
-				tr
-					td.
-						#{purchase.description}
-					td.
-						#{purchase.date}
-					td.
-						#{purchase.supplier}
-					td.
-						#{purchase.total_amount}
-			
-	p.
-		<br>
-		<a href="/">Go Back</a>	
-
-block sidebar
-	.block
-		h1 
-			mtl.
-				add_purchase
-		form.addPurchase(name="addpurchase",method="post",action="/addpurchase")
-			input(type="text", placeholder="description", name="description")
-			input(type="text", placeholder="date", name="date")
-			input(type="text", placeholder="supplier", name="supplier")
-			select(type="text", placeholder="treasury", name="treasury", id="treasury")
-				each treasury, i in treasuries
-					option(value="#{treasury._id}") #{treasury.title}
-			button#btnSubmit(type="submit") submit
+					tr(class="#{purchase._id}")
+						td.column-0.
+							#{purchase.description}
+						td(class="column-1 odd").
+							#{purchase.date}
+						td.column-2.
+							#{purchase.supplier}
+						td(class="column-3 odd").
+							#{purchase.total_amount}

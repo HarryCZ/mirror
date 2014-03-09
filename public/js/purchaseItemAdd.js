@@ -1,17 +1,46 @@
 $(document).ready(function(){
-	storageItems = storageItems.replace(/&quot;/g,'"');
-	storageItemsArr = eval("("+storageItems+")");
-	jQuery('.item_title').each(function(){
-		var i = 0;
-		var matched = 0;
-		var itemId = jQuery(this).text();
-		itemId = itemId.slice(1,itemId.length-1);
-		while ((storageItemsArr[i])&&(matched==0)){
-			if (storageItemsArr[i]._id==itemId){
-				jQuery(this).text(storageItemsArr[i].title);
-				matched++;
-			}
-		i++;
+	treasuriesArr = treasuriesArr.replace(/&quot;/g,'"');
+	treasuriesArr = eval("("+treasuriesArr+")");
+	purchaseArr = purchaseArr.replace(/&quot;/g,'"');
+	purchaseArr = eval("("+purchaseArr+")");
+	storageArr = storageArr.replace(/&quot;/g,'"');
+	storageArr = eval("("+storageArr+")");
+	
+	renderTreasuryName();
+	if (purchaseArr.items) renderItemName();	
+	alignTable();
+});
+
+function renderTreasuryName() {
+	var i=0;
+	while ((treasuriesArr[i])) {
+		if (purchaseArr.treasury == treasuriesArr[i]._id) {
+			purchaseArr.treasury = treasuriesArr[i].title;
 		}
+		i++;
+	}
+	var i=0;
+	$('.treasury').each(function(){
+		$(this).text(purchaseArr.treasury);
+		i++;
 	});
-})
+}
+
+function renderItemName() {
+	var i=0;
+	while ((purchaseArr.items[i])) {
+		var j = 0;
+		while (storageArr[j]) {
+			if (purchaseArr.items[i].item == storageArr[j]._id) {
+				purchaseArr.items[i].item = storageArr[j].title;
+			}
+			j++;
+		}
+		i++;
+	}
+	var i=0;
+	$('.purchaseItemsTable .item').each(function(){
+		$(this).text(purchaseArr.items[i].item);
+		i++;
+	});
+}

@@ -11,14 +11,16 @@ global-reset()
 /*
  * Set Variables
  */
-main-color = #333333
-background-color = #f4f4f4
+main-color = #bbbbbb
+background-color = #06050C
 
 body
   font-family 'Arial'
   font-size 14px
   background-color background-color
-  color #444
+  background url("../images/bg.png") 0 100% no-repeat
+  background-size 100% auto
+  color main-color
 
 h1
   font-size 20px
@@ -28,16 +30,26 @@ a
   color #666666
 
 header
-  padding 20px 10px
   color #fff
+  height 1.3em
   font-size 25px
   margin-bottom 20px
   background-color main-color
 
 .container
-  width 80%
   margin auto
   overflow hidden
+  padding 0 1em
+  
+.logo 
+  display inline-block
+  margin-right 5%
+  height 1em
+  margin-top 0.1em
+  
+.navhandler
+    display inline-block
+    vertical-align top
 
 .main-content
   float left
@@ -54,7 +66,7 @@ header
     border-radius 5px
     border 1px solid #ccc
     padding 0 10px 10px 10px
-    background-color background-color
+    background-color rgba(22,21,44,0.5)
     overflow hidden
 
     h1
@@ -79,6 +91,9 @@ footer
   padding-top 5px
   text-align center
   margin-top 20px
+  position fixed
+  bottom 0
+  width 100%
 
 br
   clear both
@@ -94,17 +109,34 @@ ul.featurelist li
   float left
   width 200px
 
-form.addUser input
+form input
   margin-bottom 15px
   border 1px #cccccc solid
   padding 5px
   height 22px
   width 95%
+  color main-color
+  background background-color
   border-radius 5px
 
-form.addUser button
+form button
   clear both
   display block
+  color main-color
+  background background-color
+  border-radius 5px
+  width 100%
+  line-height 1.5em
+  margin-top 1em
+
+form select
+  background background-color
+  border-radius 5px
+  color main-color
+  
+.formSelectTitle
+  display inline-block
+  margin-right 1em
 
 .userlistlink
   clear both
@@ -117,21 +149,33 @@ form.addUser button
   margin 0
   padding 0
 
+table
+  width 100%
+  background-color rgba(22,21,44,0.5)
+  padding 1em
+  
+thead tr
+  background rgba(0,0,4,0.5)
+  
 th,tr,td
   padding 5px
 
 tr
   border-bottom 1px #cccccc dashed
   display block
+ 
+tr.odd
+	background rgba(22,21,84,0.5)
 
+td
+  white-space nowrap
+  
 td,th
   width 100px
   text-align left
 /*
  *	nav
  */
-.nav
-	background rgba(255,255,255,0.3)
 .nav li
 	display inline-block
 .nav li a

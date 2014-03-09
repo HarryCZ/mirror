@@ -1,32 +1,62 @@
 extends layout
 block scripts
 	script.
-		sitems = "#{sitems}";
+		purchaseArr = "#{purchaseArr}";
+		storageArr = "#{storageArr}";
+		treasuriesArr = "#{treasuriesArr}";
 	script(type='text/javascript' src='/js/purchaseDetails.js')
 		
+block subnav
+	#subnavBtn
+		mtl.
+			purchase_details	
+	.subnav
+		ul
+			a(href="/purchaselist")
+				li
+					mtl.
+						purchases
+		
 block content
-	h1=title
-	p=treasury
-	table.itemstable
+	h3=purchases.description
+	table
+		thead
+			tr
+				th
+					mtl.
+						date
+				th.odd
+					mtl.
+						supplier
+				th
+					mtl.
+						treasury
+		tbody
+			tr
+				td.column-0=purchases.date
+				td(class="column-1 odd")=purchases.supplier
+				td(class="column-2 treasury")=purchases.treasury
+	
+	table.purchaseItemsTable
 		thead
 			tr
 				th
 					mtl.
 						item
-				th
+				th.odd
 					mtl.
 						amount
 				th
 					mtl.
 						price
 		tbody
-			each item, i in pitems
+			each item, i in purchases.items
 				tr
-					td.item_title
-						#{item.storage_item}
-					td.
+					td(class="column-3 item").
+						#{item.item}
+					td(class="column-4 odd").
 						#{item.amount}
-					td.
+					td.column-5.
 						#{item.price}
 			tr.summary
 				td
@@ -35,7 +65,7 @@ block content
 				td.
 						
 				td.
-					#{total_amount}
+					#{purchases.total_amount}
 	p.
 		<br>
 		<a href="/storage">Go Back</a>

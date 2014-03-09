@@ -1,35 +1,54 @@
 extend layout
 
+block scripts
+	script.
+		$(document).ready(function() {
+			alignTable();
+		});
+
 block subnav
+	#subnavBtn
+		mtl.
+			treasuries
 	.subnav
 		ul
-			li <a href="/incomesSpending"><mtl>incomes_spending</mtl></a>
+			a(href="/treasury")
+				li
+					mtl.
+						treasuries
+			a(href="/incomesSpending")
+				li
+					mtl.
+						incomes_spending
+			a(href="/treasuryTransfer")
+				li
+					mtl.
+						treasury_transfer
+	#addBtn
+		a(href="/addTreasuryForm")
+			img(src="/images/butAdd.png")			
+
 block content
 	h1
 		mtl.
-			treasury
+			treasuries
 	table.treasury
 		thead
 			tr
 				th
 					mtl.
 						title
-				th
+				th.odd
 					mtl.
 						status
 		tbody
 			each treasury, i in treasuries
 				tr
-					td.
+					td.column-0.
 						#{treasury.title}
-					td.
+					td(class="column-1 odd").
 						#{treasury.status}
-block sidebar
-	.block
-		h1 
-			mtl.
-				add_treasury
-		form.addTreasury(name="addTreasury",method="post",action="/addTreasury")
-			input(type="text", placeholder="title", name="title" id="title")
-			input(type="text", placeholder="status", name="status")
-			button#btnSubmit(type="submit") submit
+					td
+						form.remTreasury(name="remTreasury",method="post",action="/remTreasury", onsubmit="return confirm('Are you sure you want to submit?')")
+							input(type="hidden", name="remId" value="#{treasury._id}")
+							button#btnSubmit(type="submit") X

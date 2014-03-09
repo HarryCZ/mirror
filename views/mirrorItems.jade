@@ -1,0 +1,41 @@
+extends layout
+
+block scripts
+	script.
+		itemsArr = "#{itemsArr}";
+		storageArr = "#{storageArr}";
+		unitsArr = "#{unitsArr}";
+		treasuriesArr = "#{treasuriesArr}";
+		usersArr = "#{usersArr}";
+		mirrorArr = "#{mirrorArr}";
+	script(type='text/javascript' src='/js/mirrorItems.js')
+
+block content
+	table
+		thead
+			tr
+				th.mirrorDate
+					mtl.
+						date
+				th(class="mirrorUser odd")
+					mtl.
+						user
+				th.mirrorTreasury
+					mtl.
+						treasury
+		tbody
+			tr
+				td(class="column-0 date")=mirror.date
+				td(class="column-1 user odd")=mirror.user
+				td(class="column-2 treasury")=mirror.treasury
+	h3
+		mtl.
+			storage_status
+	form.updMirrorItemsStaus(name="updMirrorItemsStaus",method="post",action="/updMirrorItemsStaus")
+		each storage_item, i in storage
+			div(class="item item-#{i}")
+				div(class="formSelectTitle")=storage_item.title
+				input(type="text", placeholder="#{storage_item.amount}", name="items[#{i}][amount]")
+				input(type="hidden", value="#{storage_item._id}", name="items[#{i}][id]")
+		input(type="hidden", name="mirrorId" value="#{mirror._id}")
+		button#btnSubmit(type="submit") submit

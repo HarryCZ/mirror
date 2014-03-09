@@ -1,0 +1,154 @@
+extends layout
+
+block scripts
+	script.
+		mirrorArr = "#{mirrorArr}";
+		storageArr = "#{storageArr}";
+		unitsArr = "#{unitsArr}";
+		usersArr = "#{usersArr}";
+		treasuriesArr = "#{treasuriesArr}";
+		debtsArr = "#{debtsArr}";
+		
+	script(type='text/javascript' src='/js/mirrorDebts.js')
+
+block subnav
+	#subnavBtn
+		mtl.
+			mirror_confirm	
+	
+block content
+	table
+		thead
+			tr
+				th.mirrorDate
+					mtl.
+						date
+				th(class="mirrorUser odd")
+					mtl.
+						user
+				th.mirrorTreasury
+					mtl.
+						treasury
+				th(class="mirrorTreasuryStat odd")
+					mtl.
+						corection
+		tbody
+			tr
+				td(class="column-0 date")=mirror.date
+				td(class="column-1 user odd")=mirror.user
+				td(class="column-2 treasury")=mirror.treasury
+				td(class="column-3 corection odd")=corection
+	table
+		thead
+			tr
+				th.mirrorTreasury
+					mtl.
+						treasury
+				th(class="mirrorTreasuryStat odd")
+					mtl.
+						treasury_status
+				th.mirrorTreasuryStatBefore
+					mtl.
+						treasury_status_before
+		tbody
+			tr
+				td(class="column-4 treasury")=mirror.treasury
+				td(class="column-5 treasury_stat odd")=mirror.treasury_stat
+				td(class="column-6 treasury_status_before")=mirror.treasury_status_before
+	h3
+		mtl.
+			items_after_mirror
+	table.mirrorItems
+		thead
+				tr
+					th
+						mtl.
+							item
+					th.odd
+						mtl.
+							amount_before
+					th
+						mtl.
+							amount
+					th.odd
+						mtl.
+							diference
+					th
+						mtl.
+							sold_rations
+					th.odd
+						mtl.
+							sell_price
+		tbody
+			each item, i in mirror.items
+				tr.item
+					td(class="column-7 title").
+						#{item.id}
+					td(class="column-8 odd").
+						#{item.amount_before}
+					td.column-9.
+						#{item.amount}
+			tr
+				td
+					mtl.
+						total_price
+				td.totalItemsPrice
+	h3
+		mtl.
+			new_debts
+	table.mirrorDebtsTable
+		thead
+				tr
+					th
+						mtl.
+							debtor
+					th.odd
+						mtl.
+							amount
+		tbody
+			if(mirror.debts)
+				each debt, i in mirror.debts
+					tr
+						td(class="column-13 debtor").
+							#{debt.debtor}
+						td(class="column-14 odd").
+							#{debt.amount}
+			tr
+				td
+					mtl.
+						total_debts
+				td.totalDebts
+	h3
+		mtl.
+			add_debt
+	.addDebt
+		.formExistingBut
+			img(src="/images/butAdd.png")
+			mtl.
+				existing_debtor
+		.formNewBut
+			img(src="/images/butAdd.png")
+			mtl.
+				new_debtor
+		form.updMirrorDebt(id="formExisting", name="updMirrorDebt",method="post",action="/updMirrorDebt")
+			.formSelectTitle
+				mtl.
+					debtor
+			select(type="text", placeholder="debtor", name="debtor", id="debtor")
+				each debt, i in debts
+					option(value="id#{debt._id}") #{debt.debtor}
+			input(type="text", placeholder="amount", name="amount")
+			input(type="hidden", name="mirrorId" value="#{mirror._id}")
+			button#btnSubmit(type="submit") add
+		form.updMirrorDebt(id="formNew",name="updMirrorDebt",method="post",action="/updMirrorDebt")
+			input(type="text", placeholder="debtor", name="debtor")
+			input(type="text", placeholder="amount", name="amount")
+			input(type="hidden", name="mirrorId" value="#{mirror._id}")
+			button#btnSubmit(type="submit") add
+	
+	h2
+		mtl.
+			confirm_mirror
+	form.confirmMirror(name="confirmMirror",method="post",action="/confirmMirror")
+		input(type="hidden", name="mirrorId" value="#{mirror._id}")
+		button#btnSubmit(type="submit") submit

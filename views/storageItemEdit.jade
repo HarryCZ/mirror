@@ -1,0 +1,43 @@
+extends layout
+	
+block scripts
+	script.
+		storageArr = "#{storageArr}";
+		unitsArr = "#{unitsArr}";
+		title = 'storage';
+	script(type='text/javascript' src='/js/storage.js')
+	
+block subnav
+	#subnavBtn
+		mtl.
+			storage
+	.subnav
+		ul
+			a(href="/storage")
+				li
+					mtl.
+						storage
+			a(href="/units")
+				li
+					mtl.
+						units
+block content
+	h1 
+		mtl.
+			edit_storage_item
+	form.editStorageItemForm(name="editStorageItemForm",method="post",action="/editStorageItemForm")
+		input(type="text", placeholder="#{storage.title}", name="title", id="title")
+		input(type="text", placeholder="#{storage.amount}", name="amount", id="amount")
+		.formSelectTitle
+			mtl.
+				unit
+		select(type="text", placeholder="unit", name="unit", id="unit")
+			each unit, i in units
+				if storage.unit == unit._id
+					option(value="#{unit._id}", selected="selected") #{unit.title}
+				else
+					option(value="#{unit._id}") #{unit.title}
+		input(type="text", placeholder="#{storage.ration}", name="ration")
+		input(type="text", placeholder="#{storage.sell_price}", name="sell_price")
+		input(type="hidden", value="#{storage._id}", name="id")
+		button#btnSubmit(type="submit") submit

@@ -2,60 +2,83 @@ extends layout
 
 block scripts
 	script.
-		storageItems = "#{storageItems}";
+		purchaseArr = "#{purchaseArr}";
+		storageArr = "#{storageArr}";
+		treasuriesArr = "#{treasuriesArr}";
 	script(type='text/javascript' src='/js/purchaseItemAdd.js')
 	
 block content
-	h1=title
-	table.purchase_items
+	h3=purchase.description
+	table
+		thead
+			tr
+				th
+					mtl.
+						date
+				th.odd
+					mtl.
+						supplier
+				th
+					mtl.
+						treasury
+				th.odd
+					mtl.
+						total_price
+		tbody
+			tr
+				td.column-0=purchase.date
+				td(class="column-1 odd")=purchase.supplier
+				td(class="column-2 treasury")=purchase.treasury
+				td(class="column-3 total_amount odd")=purchase.total_amount
+	table.purchaseItemsTable
 		thead
 			tr
 				th
 					mtl.
 						item
-				th
+				th.odd
 					mtl.
 						amount
 				th
 					mtl.
 						price
-				th
-					mtl.
-						purchase
 		tbody
-			each item, i in items
-				tr
-					td.item_title
-						#{item.storage_item}
-					td.
-						#{item.amount}
-					td.
-						#{item.price}
-					td.
-						#{item.purchase}
+			if purchase.items
+				each item, i in purchase.items
+					tr
+						td(class="column-4 item").
+							#{item.item}
+						td(class="column-5 odd").
+							#{item.amount}
+						td.column-6.
+							#{item.price}
+						td
+							form.remPurchItem(name="remPurchItem",method="post",action="/remPurchItem")
+								input(type="hidden", name="purchase" value="#{purchase._id}")
+								input(type="hidden", name="remId" value="#{item.item}")
+								button#btnSubmit(type="submit") X
 	.block
-		h2 
+		h3 
 			mtl.
 				add_purchase_item
 		form.addPurchItem(name="addpurchaseitem",method="post",action="/writedbpurchaseitem")
-			select(type="text", placeholder="Položka", name="item", id="item")
-				each sitem, i in storageIt
+			.formSelectTitle
+				mtl.
+					item
+			select(type="text", placeholder="item", name="item", id="item")
+				each sitem, i in storage
 					option(value="#{sitem._id}") #{sitem.title}
 					
-			input(type="text", placeholder="amount", name="amount")
-			input(type="text", placeholder="price", name="price")
-			input(type="hidden", name="purchase" value="#{id}")
+			input(type="text", placeholder="amount", name="amount", required)
+			input(type="text", placeholder="price", name="price", required)
+			input(type="hidden", name="purchase" value="#{purchase._id}")
 			button#btnSubmit(type="submit") add
 	.block
 		h2 
 			mtl.
 				confirm_purchase
-		form.confirmPurch(name="confirmpurchase",method="post",action="/confirmpurchase")
-			input(type="hidden", name="pid" value="#{id}")
-			input(type="hidden", name="pdesc" value="#{title}")
-			input(type="hidden", name="pdate" value="#{date}")
-			input(type="hidden", name="psupplier" value="#{supplier}")
-			input(type="hidden", name="ptreasury" value="#{treasury}")
+		form.confirmPurchase(name="confirmpurchase",method="post",action="/confirmpurchase", , onsubmit="return confirm('Are you sure you want to submit?')")
+			input(type="hidden", name="pid" value="#{purchase._id}")
 			button#btnSubmit(type="submit") submit
 	p.
 		<br>

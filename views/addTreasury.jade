@@ -1,0 +1,28 @@
+extends layout
+	
+block subnav
+	#subnavBtn
+		mtl.
+			treasuries
+	.subnav
+		ul
+			a(href="/treasury")
+				li
+					mtl.
+						treasuries
+			a(href="/incomesSpending")
+				li
+					mtl.
+						incomes_spending
+			a(href="/treasuryTransfer")
+				li
+					mtl.
+						treasury_transfer
+block content
+	h1 
+		mtl.
+			add_treasury
+	form.addTreasury(name="addTreasury",method="post",action="/addTreasury")
+		input(type="text", placeholder="title", name="title", id="title", required)
+		input(type="text", placeholder="status", name="status", required)
+		button#btnSubmit(type="submit") submit

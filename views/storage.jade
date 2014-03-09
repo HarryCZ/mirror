@@ -1,37 +1,64 @@
 extends layout
-
+	
 block scripts
 	script.
-		items = "#{itemsList}";
-		storage = "#{storagejs}";
+		storageArr = "#{storageArr}";
+		unitsArr = "#{unitsArr}";
+		title = 'storage';
 	script(type='text/javascript' src='/js/storage.js')
 	
 block subnav
+	#subnavBtn
+		mtl.
+			storage
 	.subnav
 		ul
-			li <a href="/storage_items"><mtl>storage_items</mtl></a>
-			li <a href="/units"><mtl>units</mtl></a>
-
+			a(href="/storage")
+				li
+					mtl.
+						storage
+			a(href="/units")
+				li
+					mtl.
+						units
+	#addBtn
+		a(href="/addStorage")
+			img(src="/images/butAdd.png")
 block content
 	h1
-		mtl=title
-	table.usertable
+		mtl.
+			storage
+	table.storageTable
 		thead
 			tr
 				th
 					mtl.
 						title
-				th
+				th.odd
 					mtl.
 						amount
+				th
+					mtl.
+						ration
+				th.odd
+					mtl.
+						sell_price
 		tbody
 			each storage_item, i in storage
 				tr
-					td.title
+					td.column-0.
 						#{storage_item.title}
-					td.
+					td(class="amount column-1 odd").
 						#{storage_item.amount}
-			
-	p.
-		<br>
-		<a href="/">Go Back</a>			
+					td(class="ration column-2").
+						#{storage_item.ration} 
+					td(class="column-3 odd").
+						#{storage_item.sell_price}
+					td
+						form.remStorageItem(name="remStorageItem",method="post",action="/remStorageItem", onsubmit="return confirm('Are you sure you want to submit?')")
+							input(type="hidden", name="remId" value="#{storage_item._id}")
+							button#btnSubmit(type="submit") X
+					td.butEdit
+						a(href="/storageItemEdit#{storage_item._id}")
+							mtl.
+								edit

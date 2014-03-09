@@ -1,0 +1,38 @@
+extends layout
+	
+block scripts
+	script.
+		storageArr = "#{storageArr}";
+		unitsArr = "#{unitsArr}";
+		title = 'storage';
+	script(type='text/javascript' src='/js/storage.js')
+	
+block subnav
+	#subnavBtn
+		mtl.
+			storage
+	.subnav
+		ul
+			a(href="/storage")
+				li
+					mtl.
+						storage
+			a(href="/units")
+				li
+					mtl.
+						units
+block content
+	h1 
+		mtl.
+			add_storage_item
+	form.addItem(name="additem",method="post",action="/addstorageitem")
+		input(type="text", placeholder="title", name="title", id="title", required)
+		.formSelectTitle
+			mtl.
+				unit
+		select(type="text", placeholder="unit", name="unit", id="unit")
+			each unit, i in units
+				option(value="#{unit._id}") #{unit.title}
+		input(type="text", placeholder="ration", name="ration", required)
+		input(type="text", placeholder="sell_price", name="sell_price", required)
+		button#btnSubmit(type="submit") submit

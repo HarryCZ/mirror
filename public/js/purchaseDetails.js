@@ -1,16 +1,46 @@
 $(document).ready(function(){
-	sitems = sitems.replace(/&quot;/g,'"');
-	sitemsArr = eval("("+sitems+")");
-	jQuery('.item_title').each(function(){
-		var curId = jQuery(this).text().slice(1,jQuery(this).text().length-1);;
-		var i = 0;
-		var matched = 0;
-		while ((sitemsArr[i])&&(matched==0)){
-			if (sitemsArr[i]._id == curId){
-				jQuery(this).text(sitemsArr[i].title);
-				matched++;
-			}
-			i++;
-		}
-	});
+	treasuriesArr = treasuriesArr.replace(/&quot;/g,'"');
+	treasuriesArr = eval("("+treasuriesArr+")");
+	purchaseArr = purchaseArr.replace(/&quot;/g,'"');
+	purchaseArr = eval("("+purchaseArr+")");
+	storageArr = storageArr.replace(/&quot;/g,'"');
+	storageArr = eval("("+storageArr+")");
+	
+	renderTreasuryName();
+	renderItemName();	
+	alignTable();
 });
+
+function renderTreasuryName() {
+	var i=0;
+	while ((treasuriesArr[i])) {
+		if (purchaseArr.treasury == treasuriesArr[i]._id) {
+			purchaseArr.treasury = treasuriesArr[i].title;
+		}
+		i++;
+	}
+	var i=0;
+	$('.treasury').each(function(){
+		$(this).text(purchaseArr.treasury);
+		i++;
+	});
+}
+
+function renderItemName() {
+	var i=0;
+	while ((purchaseArr.items[i])) {
+		var j = 0;
+		while (storageArr[j]) {
+			if (purchaseArr.items[i].item == storageArr[j]._id) {
+				purchaseArr.items[i].item = storageArr[j].title;
+			}
+			j++;
+		}
+		i++;
+	}
+	var i=0;
+	$('.purchaseItemsTable .item').each(function(){
+		$(this).text(purchaseArr.items[i].item);
+		i++;
+	});
+}

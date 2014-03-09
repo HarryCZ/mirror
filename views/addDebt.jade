@@ -1,0 +1,25 @@
+extends layout
+	
+block subnav
+	#subnavBtn
+		mtl.
+			debts
+	.subnav
+		ul
+			a(href="/mirror")
+				li
+					mtl.
+						mirrors
+			a(href="/debts")
+				li
+					mtl.
+						debts
+block content
+	h1 
+		mtl.
+			add_debt
+	form.addDebt(name="addDebt",method="post",action="/addDebt")
+		input(type="text", placeholder="debtor", name="debtor", required)
+		input(type="text", placeholder="amount", name="amount", required)
+		input(type="text", placeholder="last_change_date", name="last_change_date", id="datepicker", required)
+		button#btnSubmit(type="submit") submit

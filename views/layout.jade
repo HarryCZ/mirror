@@ -2,22 +2,40 @@ doctype html
 html
 	head
 		title #{title} - Mirror-Mirror (pub economy system)
-		link(rel='stylesheet',href='/css/styles.css')
+		link(rel='stylesheet',href='/css/main.css')
+		link(rel="stylesheet",href="/css/smoothness/jquery-ui.min.css")
 		script(type='text/javascript' src='/js/jquery.js')
+		script(type='text/javascript' src='/js/jquery-ui.min.js')
 		script(type='text/javascript' src='/js/multiLang.js')
+		script(type='text/javascript' src='/js/dimensions.js')
 		block scripts
 	body
 		block scripts
 		header
-			.container
-				h1 Mirror-Mirror
+			img(class="logo", src="/images/logo.png")
+			#menuBut
+				img(src="/images/butMenu.png")
+			block subnav
+			.navhandler
 				.nav
 					ul
-						li <a href="/storage"><mtl>storage</mtl></a>
-						li <a href="/purchaselist"><mtl>purchases</mtl></a>
-						li <a href="/treasury"><mtl>treasuries</mtl></a>
-				block subnav
-		.container
+						a(href="/storage")
+							li 
+								mtl.
+									storage
+						a(href="/treasury")
+							li
+								mtl.
+									treasuries
+						a(href="/purchaselist")
+							li
+								mtl.
+									purchases
+						a(href="/mirror")
+							li
+								mtl.
+									mirrors
+		#main.container
 				.main-content
 					block content
 				.sidebar

@@ -1,0 +1,57 @@
+extends layout
+
+block scripts
+	script.
+		$(function() {
+			$( "#datepicker" ).datepicker();
+			alignTable();
+		});
+
+block subnav
+	#subnavBtn
+		mtl.
+			debts
+	.subnav
+		ul
+			a(href="/mirror")
+				li
+					mtl.
+						mirrors
+			a(href="/debts")
+				li
+					mtl.
+						debts
+	#addBtn
+		a(href="/addDebtForm")
+			img(src="/images/butAdd.png")
+		
+block content
+	h1
+		mtl.
+			debts
+	table.debtsTable
+		thead
+				tr
+					th
+						mtl.
+							debtor
+					th.odd
+						mtl.
+							amount
+					th
+						mtl.
+							last_change
+					th.odd
+						mtl.
+							last_change_date
+		tbody
+			each debt, i in debts
+				tr
+					td.column-0.
+						#{debt.debtor}
+					td(class="column-1 odd").
+						#{debt.amount}
+					td.column-2.
+						#{debt.last_change}
+					td(class="column-3 odd").
+						#{debt.last_change_date}

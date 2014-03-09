@@ -1,0 +1,55 @@
+extends layout
+
+block scripts
+	script.
+		$(function() {
+			$( "#datepicker" ).datepicker();
+		});
+		mirrorsArr = "#{mirrorsArr}";
+		usersArr = "#{usersArr}";
+		treasuriesArr = "#{treasuriesArr}";
+	script(type='text/javascript' src='/js/mirror.js')
+
+block subnav
+	#subnavBtn
+		mtl.
+			mirrors
+	.subnav
+		ul
+			a(href="/mirror")
+				li
+					mtl.
+						mirrors
+			a(href="/debts")
+				li
+					mtl.
+						debts
+	#addBtn
+		a(href="/addMirrorForm")
+			img(src="/images/butAdd.png")
+		
+block content
+	h1
+		mtl.
+			mirror
+	table.mirrorsTable
+		thead
+				tr
+					th
+						mtl.
+							date
+					th.odd
+						mtl.
+							user
+					th
+						mtl.
+							treasury
+		tbody
+			each mirror, i in mirrors
+				tr(class="#{mirror._id}")
+					td.column-0.
+						#{mirror.date}
+					td(class="column-1 user odd").
+						#{mirror.user}
+					td(class="column-2 treasury").
+						#{mirror.treasury}

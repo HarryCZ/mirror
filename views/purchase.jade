@@ -1,14 +1,23 @@
 extends layout
 
+block scripts
+	script.
+		$(function() {
+			$( "#datepicker" ).datepicker();
+		});
+
 block content
+	h1 
+		mtl.
+			add_purchase
 	form.addPurchase(name="addpurchase",method="post",action="/addpurchase")
-		input(type="text", placeholder="description", name="description")
-		input(type="text", placeholder="date", name="date")
-		input(type="text", placeholder="supplier", name="supplier")
+		input(type="text", placeholder="description", name="description", required)
+		input(type="text", placeholder="date", name="date", id="datepicker", required)
+		input(type="text", placeholder="supplier", name="supplier", required)
+		h3.formSelectTitle
+			mtl.
+				treasury
 		select(type="text", placeholder="treasury", name="treasury", id="treasury")
-				each treasury, i in treasuries
-					option(value="#{treasury._id}") #{treasury.title}
+			each treasury, i in treasuries
+				option(value="#{treasury._id}") #{treasury.title}
 		button#btnSubmit(type="submit") submit
-	p.
-		<br>
-		<a href="/storage">Go Back</a>

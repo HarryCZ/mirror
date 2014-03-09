@@ -138,6 +138,181 @@ var mtl = [
         "title": "add_unit",
         "cz": "Přidat jednotku",
         "en": "Add unit"
+    },
+    {
+        "title": "first_name",
+        "cz": "Jméno",
+        "en": "First name"
+    },
+    {
+        "title": "last_name",
+        "cz": "Příjmení",
+        "en": "Last name"
+    },
+    {
+        "title": "username",
+        "cz": "Login",
+        "en": "Login"
+    },
+    {
+        "title": "email",
+        "cz": "e-mail",
+        "en": "e-mail"
+    },
+    {
+        "title": "language",
+        "cz": "Jazyk",
+        "en": "Language"
+    },
+    {
+        "title": "password",
+        "cz": "Heslo",
+        "en": "Password"
+    },
+    {
+        "title": "user_list",
+        "cz": "Seznam uživatelů",
+        "en": "Users list"
+    },
+    {
+        "title": "add_user",
+        "cz": "Přidar uživatele",
+        "en": "Add user"
+    },
+    {
+        "title": "unit",
+        "cz": "Jednotka",
+        "en": "Unit"
+    },
+    {
+        "title": "treasuries",
+        "cz": "Pokladny",
+        "en": "Treasuries"
+    },
+    {
+        "title": "treasury",
+        "cz": "Pokladna",
+        "en": "Treasury"
+    },
+    {
+        "title": "status",
+        "cz": "Stav",
+        "en": "Status"
+    },
+    {
+        "title": "add_treasury",
+        "cz": "Přidat pokladnu",
+        "en": "Add treasury"
+    },
+    {
+        "title": "treasury_transfer",
+        "cz": "Převod mezi pokladnami",
+        "en": "Treasury transfer"
+    },
+    {
+        "title": "incomes_spending",
+        "cz": "Přijmy a výdaje",
+        "en": "Incomes and spendings"
+    },
+    {
+        "title": "add_income_spending",
+        "cz": "Přidat příjem nebo výdaj",
+        "en": "Add income or spending"
+    },
+    {
+        "title": "add_purchase",
+        "cz": "Přidat nákup",
+        "en": "Add purchase"
+    },
+    {
+        "title": "mirrors",
+        "cz": "Zrcadla",
+        "en": "Inventarizations"
+    },
+    {
+        "title": "amount_before",
+        "cz": "Původní množtví",
+        "en": "Amount before"
+    },
+    {
+        "title": "diference",
+        "cz": "Rozdíl",
+        "en": "Diference"
+    },
+    {
+        "title": "sold_rations",
+        "cz": "Prodané porce",
+        "en": "Sold rations"
+    },
+    {
+        "title": "sold_price",
+        "cz": "Částka za prodané porce",
+        "en": "Sold rations price"
+    },
+    {
+        "title": "mirror_debts",
+        "cz": "Dluhy",
+        "en": "Debts"
+    },
+    {
+        "title": "mirror_items",
+        "cz": "Položky",
+        "en": "Items"
+    },
+    {
+        "title": "debtor",
+        "cz": "Dlužník",
+        "en": "Debtor"
+    },
+    {
+        "title": "total_debts",
+        "cz": "Dluhy celkem",
+        "en": "Dotal debts"
+    },
+    {
+        "title": "treasury_status_before",
+        "cz": "Původní stav pokladny",
+        "en": "Treasury status before"
+    },
+    {
+        "title": "treasury_status",
+        "cz": "Stav pokladny",
+        "en": "Treasury status"
+    },
+    {
+        "title": "user",
+        "cz": "Uživatel",
+        "en": "User"
+    },
+    {
+        "title": "mirror",
+        "cz": "Zrcadlo",
+        "en": "Mirror"
+    },
+    {
+        "title": "add_mirror",
+        "cz": "Přidat zrcadlo",
+        "en": "Add mirror"
+    },
+    {
+        "title": "debts",
+        "cz": "Dluhy",
+        "en": "Debts"
+    },
+    {
+        "title": "add_debt",
+        "cz": "Přidat dluh",
+        "en": "Add debt"
+    },
+    {
+        "title": "last_change",
+        "cz": "Poslední změna",
+        "en": "Last change"
+    },
+    {
+        "title": "last_change_date",
+        "cz": "Datum poslední změny",
+        "en": "Last change date"
     }
 ];
 
